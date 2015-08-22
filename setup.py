@@ -10,7 +10,7 @@ requirements = [
 ]
 
 setup(
-    name = 'yql',
+    name = 'python-yql',
     packages = ['yql'],
     version = '0.0.1',
     long_description= readme(),
