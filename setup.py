@@ -10,9 +10,9 @@ requirements = [
 ]
 
 setup(
-    name = 'python-yql',
+    name = 'yql',
     packages = ['yql'],
-    version = '0.0.1',
+    version = '0.0.2',
     long_description= readme(),
     description = "python interface for yql",
     author='plasmashadow',
