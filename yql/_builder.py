@@ -5,8 +5,16 @@ import six
 class safelist(list):
 
     def get(self, index, default=None):
-        '''
-          Safe get for list like dictionary
+        '''Safe get for list like dictionary
+
+        Args:
+           index(int): The index of the element in the list
+           default(object): default object to return if the element
+           is not present int the list
+
+        Returns:
+           object: Object from the list
+
         '''
         try:
             return self.__getitem__(index)
@@ -16,8 +24,8 @@ class safelist(list):
 
 class _Filter(object):
 
-    '''
-      Filter Object for Sql statements
+    '''Filter the match of particular key to a value
+       >>>_filter = _Filter('key', 'value')
     '''
 
     def __init__(self, name, value):
@@ -36,6 +44,12 @@ class _Filter(object):
 
     @property
     def el(self):
+        ''' Returns the String expression for a Filter
+        >>>_filter = _Filter('key', 'value')
+        >>>_filter.el
+        key = value
+        >>>
+        '''
         return str(self)
 
 
@@ -43,8 +57,10 @@ class _Filter(object):
 
 class _YQLBuilder(object):
 
-    '''
-      Class for building Yql statements.
+    '''YQL query Builder
+
+      Args:
+         table(str): name of the table
     '''
 
     def __init__(self, table):
@@ -54,8 +70,17 @@ class _YQLBuilder(object):
 
     def filter(self, name, value):
 
-        '''
-          Used for yql with where statements
+        '''Adds a new condtion to YQL
+
+        Args:
+           name(str): name of the column
+           value(str,int, float): value to which the column has be
+                                  matched.
+
+        Returns:
+           _YQLBuilder: return the current instance of the object
+                        for chaining.
+
         '''
 
         self._filters.append(_Filter(name, value))
@@ -63,9 +88,10 @@ class _YQLBuilder(object):
 
     def _construct(self):
 
-        '''
-        Query Constructor for
-        Builder Object
+        '''Method to construct the Query String
+
+        Returns:
+           str: expression for query.
         '''
 
         statement = "SELECT * FROM {}".format(self.table)
@@ -90,5 +116,10 @@ class _YQLBuilder(object):
 
     @property
     def el(self):
+        '''Getter for expression language.
+
+        Returns:
+           str: query expression.
+        '''
 
         return self._construct()
