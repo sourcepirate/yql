@@ -1,0 +1,21 @@
+language: python
+python:
+- '2.6'
+- '2.7'
+- '3.2'
+- '3.3'
+- '3.4'
+install:
+- pip install six
+- pip install requests
+- pip install urllib3
+
+script: nosetests
+deploy:
+  provider: pypi
+  user: plasmashadow
+  password:
+    secure: OseFJNE5Vyo+xevunkrL/nj/qpenAc8o/NoSsaQgGV4zZectWNzyCA6kEAKdgFfLDKn8adh1aH0Vy50xfX17uy2/Mcnzy4SixNW8VSQzpDUiCzYxCShplhMkqFUPOHqF/+llERRktQlK0ZmgQ0FqEOBxxaKzBpz+kZVRpCsJBS35atyLIUJFBc7dfmSlxFiHYQ0FNHWwWTNVhI8j4/QDexWK+I/D3YctileOJ9YVY/eps7rY85peaBqvrgDfMngXiKHX0fRpCfY8mpnJiTkCeGJa1jaLxdGXaNtO+C3psdsHrH5BzY6iC6dW4AHaUbKE1I34bhr49ksXw2t1K2bpdagDPa2yCPZ7XZnHdYRJRoqW4LYLfFKLJbL6GQ13r2egjkH/Q5TSC7SsYgeQD4BybQHAkmDoYo8b2dfMh6nmKQYdvq3BAFlkbnKQ9ZlKaBuymDFmDcLbwaSqmiaZ+HwWDeTvWLDe8BEWlDLpLMuIJO1OPPjtZRfGvo68uGyPw/JoDXTJrTmRYX2iJhZCHeTAcXswPrVXxWrkqe254fXSjNRxVaOGFGUn/3TDbsdELapp4veOEzMYk6WQyfvvHqyDWQyTQL78lsKuBQvs1JwOmmPVXkjhDib6J3/LvRoACYeV+67iTjoV4I9OR0xNlirfBeMHU3jQusnzh2JokIjEp9E=
+  on:
+    repo: plasmashadow/yql
+    branch: master
