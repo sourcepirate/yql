@@ -67,6 +67,7 @@ class _YQLBuilder(object):
 
         self.table = table
         self._filters = []
+        self.column = None
 
     def filter(self, name, value):
 

@@ -27,7 +27,7 @@ class TestBuilder(unittest.TestCase):
 
         self.assertEqual(_yql.el, actual)
 
-    def test_builder(self):
+    def test_builder_1(self):
 
         _yql = _YQLBuilder("user")
 
@@ -36,6 +36,5 @@ class TestBuilder(unittest.TestCase):
 
         actual = "SELECT age,page FROM user WHERE name = sathya"
 
-        print _yql.el
-
         self.assertEqual(_yql.el, actual)
+        self.assertNotEqual(_yql.el, actual)
