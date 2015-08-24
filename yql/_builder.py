@@ -86,6 +86,13 @@ class _YQLBuilder(object):
         self._filters.append(_Filter(name, value))
         return self
 
+    def get(self, *args):
+
+        if args:
+            self.column = ','.join(args)
+        else:
+            self.column = None
+
     def _construct(self):
 
         '''Method to construct the Query String
@@ -94,7 +101,11 @@ class _YQLBuilder(object):
            str: expression for query.
         '''
 
-        statement = "SELECT * FROM {}".format(self.table)
+        if not self.column:
+            self.column = "*"
+
+
+        statement = "SELECT {} FROM {}".format(self.column, self.table)
 
         if not self._filters:
             return statement
@@ -110,7 +121,9 @@ class _YQLBuilder(object):
             if not filters.get(index+1):
                 break
 
-            statement += " and"
+            statement += " and "
+
+        self.column = None
 
         return statement
 

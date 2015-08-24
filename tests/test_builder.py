@@ -21,7 +21,21 @@ class TestBuilder(unittest.TestCase):
         _yql = _YQLBuilder("user")
 
         _yql.filter("name", "sathya")
+        _yql.filter("age", 26)
 
-        actual = "SELECT * FROM user WHERE name = sathya"
+        actual = "SELECT * FROM user WHERE name = sathya and age = 26"
+
+        self.assertEqual(_yql.el, actual)
+
+    def test_builder(self):
+
+        _yql = _YQLBuilder("user")
+
+        g = _yql.filter("name","sathya")
+        g.get("age", "page")
+
+        actual = "SELECT age,page FROM user WHERE name = sathya"
+
+        print _yql.el
 
         self.assertEqual(_yql.el, actual)

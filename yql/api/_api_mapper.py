@@ -27,7 +27,5 @@ class _object_decoder(json.JSONDecoder):
 
             if _class is datetime:
                 return str(obj)
-
             else:
-
                 return obj
