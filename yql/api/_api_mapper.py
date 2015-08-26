@@ -29,3 +29,14 @@ class _object_decoder(json.JSONDecoder):
                 return str(obj)
             else:
                 return obj
+
+class ObjectMapper(object):
+
+    def __init__(self, json_obj , *args, **kwargs):
+
+        d = json.loads(json_obj)
+        for a, b in d.items():
+            if isinstance(b, (list, tuple)):
+               setattr(self, a, [ObjectMapper(x) if isinstance(x, dict) else x for x in b])
+            else:
+               setattr(self, a, ObjectMapper(b) if isinstance(b, dict) else b)
