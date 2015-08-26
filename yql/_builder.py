@@ -63,6 +63,18 @@ class _YQLBuilder(object):
          table(str): name of the table
     '''
 
+    _instance = None
+
+
+    def __new__(cls, *args, **kwargs):
+        ''' Gets the same instance if the instance is
+            instantiated
+        '''
+        if not cls._instance:
+            cls._instance = super(_YQLBuilder, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
+
     def __init__(self, table):
 
         self.table = table
