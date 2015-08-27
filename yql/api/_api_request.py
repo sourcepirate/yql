@@ -1,6 +1,10 @@
 
 from requests import Session
 from yql._builder import _YQLBuilder
+from yql import _yahoo_api
+from ._api_response import _Api_Response
+from six.moves.urllib.parse import urlencode
+
 
 
 class _Api_Request(Session):
@@ -20,9 +24,9 @@ class _Api_Request(Session):
 
         """
 
-        self.__tablename = kwargs.get('table', None)
+        self.__tablename = kwargs.pop('table', None)
         self.__yql = _YQLBuilder(self.__tablename)
-        super(_APi_Request, self).__init__(*args, **kwargs)
+        super(_Api_Request, self).__init__(*args, **kwargs)
 
 
     def add_filter(self, name, value):
@@ -55,6 +59,11 @@ class _Api_Request(Session):
         self._yql.get(column)
         return self
 
+
+
     @property
     def result(self):
-        pass
+        url = self.__yql._construct()
+        url = _yahoo_api+ urlencode(dict(q=url))
+        response = super(_Api_Request, self).get(url)
+        return _Api_Response(response)

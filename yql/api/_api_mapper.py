@@ -49,6 +49,7 @@ class ObjectMapper(object):
     def __init__(self, json_obj , *args, **kwargs):
 
         d = json_obj
+        print d
         for a, b in six.iteritems(d):
             if isinstance(b, (list, tuple)):
                setattr(self, a, [ObjectMapper(x) if isinstance(x, dict) else x for x in b])
