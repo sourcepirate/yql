@@ -69,4 +69,4 @@ class ObjectMapper(object):
            ObjectMapper: Returns the ObjectMapper instance.
 
         '''
-        return ObjectMapper(json_obj, *args, **kwargs)
+        return ObjectMapper(json_dict, *args, **kwargs)

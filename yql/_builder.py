@@ -26,16 +26,34 @@ class _Filter(object):
 
     '''Filter the match of particular key to a value
        >>>_filter = _Filter('key', 'value')
+
     '''
 
-    def __init__(self, name, value):
+    def __init__(self, name, value, type="unicode"):
+
+        '''Represents the Filter in yql query
+         For example: select * from query where age = 26 (is integer)
+                      select * from query where name = 'sathya' (unicode)
+                      select * from query where quote = "As long as i do i will continue to do"
+
+        Args:
+            name(str):              Name of the key.
+            value(str, int ,float): Value to be use for query.
+            type:                   Represents the type of data used as a value.
+        '''
 
         self.name = name
         self.operator = "="
-        self.value = value
+        if type == "integer":
+            self.value = value
+        elif type== "unicode":
+            self.value = "'{}'".format(value)
+        elif type== "string":
+            self.value = '"{}"'.format(value)
+
+
 
     def __str__(self):
-
         return "{} {} {}".format(self.name, self.operator, self.value)
 
     def __repr__(self):
@@ -83,7 +101,7 @@ class _YQLBuilder(object):
         self._filters = []
         self.column = None
 
-    def filter(self, name, value):
+    def filter(self, name, value ,type= "unicode"):
 
         '''Adds a new condtion to YQL
 
@@ -98,7 +116,7 @@ class _YQLBuilder(object):
 
         '''
 
-        self._filters.append(_Filter(name, value))
+        self._filters.append(_Filter(name, value, type=type))
         return self
 
     def get(self, *args):

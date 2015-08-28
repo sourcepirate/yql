@@ -10,5 +10,5 @@ class TestApiRequest(unittest.TestCase):
 
         api_request = _Api_Request(table="html")
         api_request.add_filter("url", "http://en.wikipedia.org/wiki/Yahoo")
-        # response = api_request.result
+        # response = api_request.json()
         self.assertIsNotNone(api_request)

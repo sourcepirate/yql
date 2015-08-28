@@ -4,6 +4,7 @@ from yql._builder import _YQLBuilder
 from yql import _yahoo_api
 from ._api_response import _Api_Response
 from six.moves.urllib.parse import urlencode
+import json
 
 
 
@@ -64,6 +65,19 @@ class _Api_Request(Session):
     @property
     def result(self):
         url = self.__yql._construct()
-        url = _yahoo_api+ urlencode(dict(q=url))
+        url = _yahoo_api+"?"+ urlencode(dict(q=url))
+        response = super(_Api_Request, self).get(url)
+        return _Api_Response(response)
+
+    def json(self):
+        url = self.__yql._construct()
+        url = _yahoo_api+"?"+ urlencode(dict(q=url, format="json"))
+        response = super(_Api_Request, self).get(url)
+        response = json.loads(response)
+        return _Api_Response(response)
+
+    def xml(self):
+        url = self.__yql._construct()
+        url = _yahoo_api+"?"+ urlencode(dict(q=url, format="xml"))
         response = super(_Api_Request, self).get(url)
         return _Api_Response(response)
