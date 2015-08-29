@@ -16,10 +16,10 @@
 
 #base url for yahoo query library.
 
-from api._api_request import _Api_Request
-from api._api_response import _Api_Response
+from .api._api_request import _Api_Request
+from .api._api_response import _Api_Response
 
-from api._api_mapper import ObjectMapper
+from .api._api_mapper import ObjectMapper
 
 YRequest = _Api_Request
 YResponse = _Api_Response

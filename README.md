@@ -7,7 +7,7 @@ YQL is a thin wrapper for Yahoo Query Language.
 
 ##Installation:
 
-```
+```python
    pip install yql
 
 ```
