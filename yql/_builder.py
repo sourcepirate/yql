@@ -47,18 +47,18 @@ class _Filter(object):
         if type == "integer":
             self.value = value
         elif type== "unicode":
-            self.value = "'{}'".format(value)
+            self.value = "'{0}'".format(value)
         elif type== "string":
-            self.value = '"{}"'.format(value)
+            self.value = '"{0}"'.format(value)
 
 
 
     def __str__(self):
-        return "{} {} {}".format(self.name, self.operator, self.value)
+        return "{0} {1} {2}".format(self.name, self.operator, self.value)
 
     def __repr__(self):
 
-        return repr("{} {} {}".format(self.name, self.operator, self.value))
+        return repr("{0} {1} {2}".format(self.name, self.operator, self.value))
 
     @property
     def el(self):
@@ -71,9 +71,10 @@ class _Filter(object):
         return str(self)
 
 
+class _object(object):
+    pass
 
-
-class _YQLBuilder(object):
+class _YQLBuilder(_object):
 
     '''YQL query Builder
 
@@ -138,7 +139,7 @@ class _YQLBuilder(object):
             self.column = "*"
 
 
-        statement = "SELECT {} FROM {}".format(self.column, self.table)
+        statement = "SELECT {0} FROM {1}".format(self.column, self.table)
 
         if not self._filters:
             return statement

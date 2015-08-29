@@ -1,5 +1,6 @@
 from ._api_mapper import ObjectMapper
 import json
+import six
 
 
 class _Api_Response(object):
@@ -12,7 +13,10 @@ class _Api_Response(object):
 
         self.status = response.status_code
         if type == "json":
-            self._object = ObjectMapper(json.loads(response.content))
+            if six.PY3:
+                self._object = ObjectMapper(json.loads(response.content.decode()))
+            else:
+                self._object = ObjectMapper(json.loads(response.content))
         else:
             self._object = response.content
 
