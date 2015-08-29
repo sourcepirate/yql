@@ -1,12 +1,11 @@
 
 from requests import Session
 from yql._builder import _YQLBuilder
-from yql import _yahoo_api
 from ._api_response import _Api_Response
 from six.moves.urllib.parse import urlencode
 import json
 
-
+_yahoo_api = 'https://query.yahooapis.com/v1/public/yql'
 
 class _Api_Request(Session):
 
@@ -73,7 +72,6 @@ class _Api_Request(Session):
         url = self.__yql._construct()
         url = _yahoo_api+"?"+ urlencode(dict(q=url, format="json"))
         response = super(_Api_Request, self).get(url)
-        response = json.loads(response)
         return _Api_Response(response)
 
     def xml(self):

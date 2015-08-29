@@ -1,4 +1,5 @@
 from ._api_mapper import ObjectMapper
+import json
 
 
 class _Api_Response(object):
@@ -7,10 +8,13 @@ class _Api_Response(object):
        and converts into the response of yql api.
     '''
 
-    def __init__(self, response, *args,  **kwargs):
+    def __init__(self, response, type="json"):
 
         self.status = response.status_code
-        self._object = ObjectMapper(response.content)
+        if type == "json":
+            self._object = ObjectMapper(json.loads(response.content))
+        else:
+            self._object = response.content
 
     @property
     def result(self):
