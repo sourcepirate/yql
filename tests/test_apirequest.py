@@ -8,6 +8,10 @@ class TestApiRequest(unittest.TestCase):
 
     def test_request(self):
 
+        ''' Testing Default Expression without a table name
+        
+        '''
+
         api_request = _Api_Request(table="html")
         api_request.add_filter("url", "http://en.wikipedia.org/wiki/Yahoo")
         response = api_request.json()

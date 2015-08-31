@@ -68,14 +68,21 @@ class _Api_Request(Session):
         response = super(_Api_Request, self).get(url)
         return _Api_Response(response)
 
-    def json(self):
-        url = self.__yql._construct()
+    def run(self, format=None, expression=None):
+        if format == "json":
+            return self.json(expression=expression)
+        else:
+            return self.xml(expression=expression)
+
+    def json(self, expression=None):
+        url = self.__yql._construct(expression=expression)
         url = _yahoo_api+"?"+ urlencode(dict(q=url, format="json"))
         response = super(_Api_Request, self).get(url)
         return _Api_Response(response)
 
-    def xml(self):
-        url = self.__yql._construct()
+    def xml(self, expression=None):
+        url = self.__yql._construct(expression=expression)
         url = _yahoo_api+"?"+ urlencode(dict(q=url, format="xml"))
+        print url
         response = super(_Api_Request, self).get(url)
-        return _Api_Response(response)
+        return _Api_Response(response, type="xml")
