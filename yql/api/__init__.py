@@ -1,5 +1,4 @@
 from ._api_request import _Api_Request
-from yql.exceptions import MissingParams
 class YRequest(object):
 
     def __init__(self, *args, **kwargs):
