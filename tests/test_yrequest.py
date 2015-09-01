@@ -20,7 +20,6 @@ class  TestYRequest(unittest.TestCase):
         '''
         y_request = YRequest()
         response = y_request.get(format="xml", expression="show tables")
-        print response._object
         self.assertEqual(response.status, 200)
 
     def test_list_tables(self):
