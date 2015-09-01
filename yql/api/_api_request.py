@@ -83,6 +83,5 @@ class _Api_Request(Session):
     def xml(self, expression=None):
         url = self.__yql._construct(expression=expression)
         url = _yahoo_api+"?"+ urlencode(dict(q=url, format="xml"))
-        print url
         response = super(_Api_Request, self).get(url)
         return _Api_Response(response, type="xml")
