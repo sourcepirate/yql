@@ -127,13 +127,17 @@ class _YQLBuilder(_object):
         else:
             self.column = None
 
-    def _construct(self):
+    def _construct(self, expression=None):
 
         '''Method to construct the Query String
 
+        expression(str) : default query statement(Show Tables)
         Returns:
            str: expression for query.
         '''
+
+        if expression:
+            return expression
 
         if not self.column:
             self.column = "*"
