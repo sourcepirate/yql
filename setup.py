@@ -11,7 +11,7 @@ requirements = [
 
 setup(
     name = 'yql',
-    packages = ['yql'],
+    packages = ['yql', 'yql.api'],
     version = '1.0.0',
     long_description= readme(),
     description = "python interface for yql",
