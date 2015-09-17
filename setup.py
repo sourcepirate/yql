@@ -12,7 +12,7 @@ requirements = [
 setup(
     name = 'yql',
     packages = ['yql', 'yql.api'],
-    version = '1.0.0',
+    version = '1.0.1',
     long_description= readme(),
     description = "python interface for yql",
     author='plasmashadow',
