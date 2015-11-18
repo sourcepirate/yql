@@ -1,6 +1,7 @@
 ##YQL
 [![Build Status](https://travis-ci.org/plasmashadow/yql.svg?branch=master)](https://travis-ci.org/plasmashadow/yql)
 [![PyPI version](https://badge.fury.io/py/yql.svg)](http://badge.fury.io/py/yql)
+[![PyPI](https://img.shields.io/pypi/dm/yql.svg)](https://pypi.python.org/pypi/yql)
 
 ##Description:
 YQL is a thin wrapper for Yahoo Query Language.
