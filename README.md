@@ -40,3 +40,7 @@ log.info(response.query.count)
 
 ##LICENSE
 MIT
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/plasmashadow/yql/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
